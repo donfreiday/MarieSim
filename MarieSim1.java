@@ -11,6 +11,6 @@ import MarieSimulator.MarieSim;
 public class MarieSim1 {
   public static void main(String args[]) {
     MarieSim sim = new MarieSim();
-    sim.show();
+    sim.setVisible(true);
   }
 } // MarieSim1
