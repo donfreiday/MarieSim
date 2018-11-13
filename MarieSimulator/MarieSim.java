@@ -765,7 +765,7 @@ public class MarieSim extends JFrame {
 *  This is the constructor for the GUI simulator.  Components are defined and populated   *
 *  in the order in which they appear on the screen:  left-to-right, top-to-bottom.        *
 ******************************************************************************************/
-    setSize(new Dimension(780, 550));
+    setSize(new Dimension(780, (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
     setIconImage(Toolkit.getDefaultToolkit()
                           .createImage(MarieSim.class.getResource("M.gif")));
     setTitle("MARIE Simulator");
@@ -1300,11 +1300,11 @@ public class MarieSim extends JFrame {
 /* --  Create and populate the container that will hold the memory table display and  -- */
 /* --  the status message text field.                                                 -- */
 /* --                                                                                 -- */
-    bottomPanel.setPreferredSize(new Dimension(760, 210));   // Container for memory array
+    bottomPanel.setPreferredSize(new Dimension(760, 600));   // Container for memory array
     bottomPanel.setLayout(new FlowLayout());                 // and message line.
     bottomPanel.setBackground(simulatorBackground);
     memoryPane = createMemoryPanel();
-    memoryPane.setPreferredSize(new Dimension(692, 155));
+    memoryPane.setPreferredSize(new Dimension(692, 500));
     memoryPane.setBorder(BorderFactory.createEtchedBorder());
 
     msgField.setBackground(messageBackground);            // Machine message
