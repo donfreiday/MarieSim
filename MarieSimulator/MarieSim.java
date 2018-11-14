@@ -118,12 +118,12 @@ public class MarieSim extends JFrame {
   public static final int MINIMUM_DELAY = 10;
   public static final String[] base = { "Hex", "Dec", "ASCII" };
   public static final String[] outputControl = { "Control", "Use Linefeeds", "No Linefeeds", "Clear output", "Print" };
-  public static final Color simulatorBackground = new Color(0, 0, 0);
-  public static final Color registerForeground = new Color(105, 185, 225);
-  public static final Color registerBackground = new Color(105, 165, 200);
-  public static final Color registerTextColor = new Color(85, 55, 155);
-  public static final Color messageBackground = new Color(210, 210, 255);
-  public static final Color tableHeaderColor = new Color(65, 80, 150);
+  public static final Color simulatorBackground = Color.BLACK;
+  public static final Color registerForeground = Color.DARK_GRAY;
+  public static final Color registerBackground = Color.DARK_GRAY;
+  public static final Color registerTextColor = Color.WHITE;
+  public static final Color messageBackground = Color.BLACK;
+  public static final Color tableHeaderColor = Color.WHITE;
 
   /* -- -- */
   /* -- Instance variables. -- */
@@ -225,7 +225,8 @@ public class MarieSim extends JFrame {
   JLabel inputLabel = new JLabel();
   JComboBox inputModeBox = new JComboBox(base);
 
-  JPanel outputOuterPanel = new JPanel(); // Containers to hold output... we use
+  // JPanel outputOuterPanel = new JPanel(); // Containers to hold output... we
+  // use
   JPanel outputInnerPanel = new JPanel(); // two for aesthetics.
   TitledBorder outputInnerBorder = new TitledBorder(BorderFactory.createRaisedBevelBorder(), "OUTPUT",
       TitledBorder.CENTER, TitledBorder.BELOW_TOP);
@@ -771,7 +772,7 @@ public class MarieSim extends JFrame {
      * populated * in the order in which they appear on the screen: left-to-right,
      * top-to-bottom. *
      ******************************************************************************************/
-    setSize(new Dimension(780, (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+    setSize(Toolkit.getDefaultToolkit().getScreenSize());
     setIconImage(Toolkit.getDefaultToolkit().createImage(MarieSim.class.getResource("M.gif")));
     setTitle("MARIE Simulator");
     enableEvents(AWTEvent.WINDOW_EVENT_MASK);
@@ -1039,7 +1040,7 @@ public class MarieSim extends JFrame {
 
     programPane = createProgramPanel(); // Create program execution
     programPane.setPreferredSize(new Dimension(318, 248)); // monitor table.
-    programPane.setBorder(BorderFactory.createEtchedBorder());
+    // programPane.setBorder(BorderFactory.createEtchedBorder());
 
     mainPanel.add(programPane);
     /* -- -- */
@@ -1246,13 +1247,13 @@ public class MarieSim extends JFrame {
     /* -- -- */
     /* -- Panel for output register (OUTPUT) -- */
     /* -- -- */
-    outputScrollPane.getViewport() // Construct the output area
-        .setBackground(Color.white);
+    // outputScrollPane.getViewport() // Construct the output area
+    // .setBackground(Color.white);
     outputScrollPane.setBorder(BorderFactory.createLoweredBevelBorder());
     outputScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-    outputScrollPane.setPreferredSize(new Dimension(158, 166));
+    outputScrollPane.setPreferredSize(new Dimension(200, 180));
     outputArea.setFont(new Font("Monospaced", 0, 12));
-    outputArea.setBorder(BorderFactory.createLineBorder(Color.white, 4));
+    outputArea.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 4));
     outputScrollPane.getViewport().add(outputArea, null);
     outputModeBox.setPreferredSize(new Dimension(60, 22));
     outputModeBox.setBackground(registerForeground);
@@ -1295,21 +1296,22 @@ public class MarieSim extends JFrame {
         } // switch
       }
     }); // Listener
-    outputOuterPanel.setPreferredSize(new Dimension(208, 250)); // Outermost OUTPUT container
-    outputOuterPanel.setBackground(registerBackground);
-    outputOuterPanel.setBorder(BorderFactory.createEtchedBorder());
+    // outputOuterPanel.setPreferredSize(new Dimension(208, 250)); // Outermost
+    // OUTPUT container
+    // outputOuterPanel.setBackground(registerBackground);
+    // outputOuterPanel.setBorder(BorderFactory.createEtchedBorder());
 
     outputInnerPanel.setBackground(registerForeground); // Next level OUTPUT container.
     outputInnerBorder.setTitleColor(registerTextColor); // (Contained within above.)
     outputInnerPanel.setBorder(outputInnerBorder);
-    outputInnerPanel.setPreferredSize(new Dimension(186, 232));
+    outputInnerPanel.setPreferredSize(new Dimension(208, 250));
     outputInnerPanel.setLayout(new FlowLayout());
     outputInnerPanel.add(outputScrollPane); // Add the scrollpane and
     outputInnerPanel.add(outputModeBox); // display controls.
     outputInnerPanel.add(outputControlBox);
 
-    outputOuterPanel.add(outputInnerPanel);
-    mainPanel.add(outputOuterPanel);
+    // outputOuterPanel.add(outputInnerPanel);
+    mainPanel.add(outputInnerPanel);
     simulatorPane.add(mainPanel); // Add the center panel to the main screen.
 
     /* -- -- */
@@ -1319,11 +1321,11 @@ public class MarieSim extends JFrame {
      */
     /* -- the status message text field. -- */
     /* -- -- */
-    bottomPanel.setPreferredSize(new Dimension(760, 600)); // Container for memory array
+    bottomPanel.setPreferredSize(new Dimension(692, 350)); // Container for memory array
     bottomPanel.setLayout(new FlowLayout()); // and message line.
     bottomPanel.setBackground(simulatorBackground);
     memoryPane = createMemoryPanel();
-    memoryPane.setPreferredSize(new Dimension(692, 380));
+    memoryPane.setPreferredSize(new Dimension(692, 350));
     memoryPane.setBorder(BorderFactory.createEtchedBorder());
 
     msgField.setBackground(messageBackground); // Machine message
@@ -1360,14 +1362,14 @@ public class MarieSim extends JFrame {
         setText((String) value);
         setFont(new Font("Monospaced", 0, 12));
         setOpaque(true);
-        setBackground(Color.white);
-        setForeground(Color.black);
+        setBackground(Color.BLACK);
+        setForeground(Color.WHITE);
         setBorder(new EmptyBorder(0, 0, 0, 0));
         if (row == programFocusRow) {
-          setBackground(Color.green); // Highlight the currently-executing
+          setBackground(Color.DARK_GRAY); // Highlight the currently-executing
         } // instruction in green.
         else {
-          setBackground(Color.white);
+          setBackground(Color.BLACK);
         }
         return this;
       } // getTableCellRendererComponent()
@@ -1378,11 +1380,12 @@ public class MarieSim extends JFrame {
           int row, int column) {
         if (column > 0) {
           setText((String) value);
-          setBackground(Color.lightGray);
+
         }
+        setBackground(Color.DARK_GRAY);
         setToolTipText("Check box to set breakpoint.");
         setFont(new Font("sanserif", 0, 11));
-        setForeground(new Color(0, 50, 165));
+        // setForeground(new Color(0, 50, 165));
         return this;
       } // getTableCellRendererComponent()
     } // RowHeaderTableCellRenderer
@@ -1435,7 +1438,7 @@ public class MarieSim extends JFrame {
     programTable = new JTable(ptm, cm);
     programTable.setRowSelectionAllowed(false); // Prohibit mouse clicks
     programTable.setCellSelectionEnabled(false); // from highlighting
-    programTable.setSelectionBackground(Color.white); // cells.
+    programTable.setSelectionBackground(Color.DARK_GRAY); // cells.
     programTable.setShowHorizontalLines(false); // Gridline control: we
     programTable.setShowVerticalLines(false); // turn everything off and
     programTable.setIntercellSpacing(new Dimension(0, 1)); // zero out borders so the
@@ -1445,6 +1448,7 @@ public class MarieSim extends JFrame {
     programTable.setDefaultRenderer(Object.class, renderer);
 
     JTableHeader tableHeader = programTable.getTableHeader();
+    tableHeader.setBackground(Color.black);
     tableHeader.setForeground(tableHeaderColor);
     tableHeader.setFont(new Font("Dialog", 0, 11));
     tableHeader.setReorderingAllowed(false);
@@ -1455,14 +1459,18 @@ public class MarieSim extends JFrame {
     JTable headerColumn = new JTable(ptm, rowHeaderModel);
     headerColumn.createDefaultColumnsFromModel();
     headerColumn.setMaximumSize(new Dimension(60, 10000));
-    headerColumn.setBackground(new Color(224, 224, 224)); // Gray background for checkbox.
+    // headerColumn.setBackground(new Color(224, 224, 224)); // Gray background for
+    // checkbox.
     headerColumn.setShowVerticalLines(false);
-    headerColumn.setSelectionBackground(Color.lightGray); // Makes header selection
-                                                          // invisible.
+    // headerColumn.setSelectionBackground(Color.lightGray); // Makes header
+    // selection
+    // invisible.
     headerColumn.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
     headerColumn.setColumnSelectionAllowed(false);
     headerColumn.setCellSelectionEnabled(false);
     headerColumn.setOpaque(false);
+    headerColumn.setBackground(Color.black);
+    headerColumn.setForeground(Color.WHITE);
     RowHeaderTableCellRenderer headerRenderer = new RowHeaderTableCellRenderer();
     headerColumn.setDefaultRenderer(Object.class, headerRenderer);
     headerColumn.setRowHeight(PROGRAM_TABLE_ROW_HEIGHT);
@@ -1507,14 +1515,14 @@ public class MarieSim extends JFrame {
         setText((String) value);
         setFont(new Font("Monospaced", 0, 11));
         setOpaque(true);
-        setBackground(Color.white);
-        setForeground(Color.black);
+        setBackground(Color.BLACK);
+        setForeground(Color.WHITE);
         setBorder(new EmptyBorder(0, 0, 0, 0));
         if (((row * 16) + column) == memoryFocusCell) { // Set the green cell
-          setBackground(Color.green); // highlight if the
+          setBackground(Color.DARK_GRAY); // highlight if the
         } // application is using
         else { // the cell.
-          setBackground(Color.white);
+          setBackground(Color.BLACK);
         }
         return this;
       } // getTableCellRendererComponent()
@@ -1525,6 +1533,7 @@ public class MarieSim extends JFrame {
           int row, int column) {
         setText((String) value);
         setFont(new Font("Dialog", 0, 11));
+
         setForeground(tableHeaderColor);
         return this;
       } // getTableCellRendererComponent()
@@ -1595,7 +1604,7 @@ public class MarieSim extends JFrame {
     memoryTable = new JTable(tm, cm);
     memoryTable.setRowSelectionAllowed(false);
     memoryTable.setCellSelectionEnabled(false);
-    memoryTable.setSelectionBackground(Color.white);
+    memoryTable.setSelectionBackground(Color.DARK_GRAY);
     memoryTable.setShowHorizontalLines(false); // Turn off all gridlines.
     memoryTable.setShowVerticalLines(false);
     memoryTable.setRowHeight(MEMORY_TABLE_ROW_HEIGHT);
@@ -1603,6 +1612,7 @@ public class MarieSim extends JFrame {
     MemoryTableCellRenderer renderer = new MemoryTableCellRenderer();
     memoryTable.setDefaultRenderer(Object.class, renderer);
     JTableHeader jth = memoryTable.getTableHeader();
+    
     jth.setForeground(tableHeaderColor);
     jth.setFont(new Font("Dialog", 0, 11));
     jth.setReorderingAllowed(false);
@@ -1613,11 +1623,12 @@ public class MarieSim extends JFrame {
     JTable headerColumn = new JTable(tm, rowHeaderModel);
     headerColumn.createDefaultColumnsFromModel();
     headerColumn.setMaximumSize(new Dimension(30, 150));
-    headerColumn.setBackground(Color.lightGray);
+    // headerColumn.setBackground(Color.lightGray);
     headerColumn.setOpaque(false);
     headerColumn.setShowVerticalLines(false);
-    headerColumn.setSelectionBackground(Color.lightGray); // Make header selection
-                                                          // invisible.
+    // headerColumn.setSelectionBackground(Color.lightGray); // Make header
+    // selection
+    // // invisible.
     headerColumn.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
     headerColumn.setColumnSelectionAllowed(false);
     headerColumn.setCellSelectionEnabled(false);
@@ -1627,6 +1638,10 @@ public class MarieSim extends JFrame {
 
     memoryTable.setSelectionModel // Sharing the same model
     (headerColumn.getSelectionModel()); // keeps tables in synch.
+
+    jth.setBackground(Color.BLACK);
+    memoryTable.setBackground(Color.BLACK);
+    headerColumn.setBackground(Color.BLACK);
 
     JViewport jv = new JViewport();
     jv.setView(headerColumn);
