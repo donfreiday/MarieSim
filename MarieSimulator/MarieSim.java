@@ -118,7 +118,7 @@ public class MarieSim extends JFrame {
   public static final int MINIMUM_DELAY = 10;
   public static final String[] base = { "Hex", "Dec", "ASCII" };
   public static final String[] outputControl = { "Control", "Use Linefeeds", "No Linefeeds", "Clear output", "Print" };
-  public static final Color simulatorBackground = new Color(175, 175, 200);
+  public static final Color simulatorBackground = new Color(0, 0, 0);
   public static final Color registerForeground = new Color(105, 185, 225);
   public static final Color registerBackground = new Color(105, 165, 200);
   public static final Color registerTextColor = new Color(85, 55, 155);
