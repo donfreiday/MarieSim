@@ -1,4 +1,4 @@
-##MarieSim
+## MarieSim
 
 This is the source for MarieSim, which accompanies the textbook "Computer Organization and Architecture" by Linda Null and Julia Lobur, as required by the course Computer Organization at ESU.
 
