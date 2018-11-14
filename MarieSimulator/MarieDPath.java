@@ -1464,20 +1464,6 @@ public class MarieDPath extends JFrame {
   } // processWindowEvent()
 
   void exitProgram() {
-/******************************************************************************************
-*  Before closing the simulator, we ask the user to confirm the decision (to avoid        *
-*  accidental selection).  The confirmation is done through a JOptionPane popup set       *
-*  to default to "Yes."                                                                   *
-******************************************************************************************/
-    JFrame closingFrame = new JFrame("Confirm Quit");
-    closingFrame.setIconImage(Toolkit.getDefaultToolkit()
-                      .createImage(MarieDPath.class.getResource("M.gif")));
-    int option = JOptionPane
-                    .showOptionDialog(closingFrame, "Really quit?",
-                                      "Quit Confirmation", JOptionPane.YES_NO_OPTION,
-                                      JOptionPane.QUESTION_MESSAGE, null,
-                                       new Object[] {"Yes", "No"}, "Yes");
-    if (option == JOptionPane.YES_OPTION)
       System.exit(0);
  } // exitProgram()
 

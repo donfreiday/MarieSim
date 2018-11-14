@@ -51,7 +51,9 @@ public class MarieSim1 {
       UIManager.put("Viewport.background", Color.DARK_GRAY);
       UIManager.put("EditorPane.foreground", Color.WHITE);
       UIManager.put("EditorPane.background", Color.DARK_GRAY);
-
+      UIManager.put("Caret.foreground", Color.WHITE);
+      UIManager.put("EditorPane.caretForeground", Color.WHITE);
+     
 
     MarieSim sim = new MarieSim();
     sim.setVisible(true);

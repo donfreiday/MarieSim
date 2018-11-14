@@ -767,27 +767,16 @@ public class MarieEditor extends JFrame {
   } // processWindowEvent()
 
   void exitProgram() {
-    /******************************************************************************************
-     * Before closing the simulator, we ask the user to confirm the decision (to
-     * avoid * accidental selection). The confirmation is done through a JOptionPane
-     * popup set * to default to "Yes." *
-     ******************************************************************************************/
-    JFrame closingFrame = new JFrame("Confirm Editor Quit");
-    closingFrame.setIconImage(Toolkit.getDefaultToolkit().createImage(MarieSim.class.getResource("M.gif")));
-    int option = JOptionPane.showOptionDialog(closingFrame, "Really quit editor?", "Quit Editor Confirmation",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] { "Yes", "No" }, "Yes");
-    if (option == JOptionPane.YES_OPTION) {
-      try {
-        listingFileViewer.dispose(); // Before we go, kill listing window
-      } // if it exists.
-      catch (Exception e) {
-      }
-      if (exitOnClose)
-        System.exit(0); // We terminate or return
-      else { // depending on exitMode
-        dispose(); // used by the constructors.
-        return;
-      }
+    try {
+      listingFileViewer.dispose(); // Before we go, kill listing window
+    } // if it exists.
+    catch (Exception e) {
+    }
+    if (exitOnClose)
+      System.exit(0); // We terminate or return
+    else { // depending on exitMode
+      dispose(); // used by the constructors.
+      return;
     }
   } // exitProgram()
 
