@@ -1323,7 +1323,7 @@ public class MarieSim extends JFrame {
     bottomPanel.setLayout(new FlowLayout()); // and message line.
     bottomPanel.setBackground(simulatorBackground);
     memoryPane = createMemoryPanel();
-    memoryPane.setPreferredSize(new Dimension(692, 500));
+    memoryPane.setPreferredSize(new Dimension(692, 380));
     memoryPane.setBorder(BorderFactory.createEtchedBorder());
 
     msgField.setBackground(messageBackground); // Machine message
